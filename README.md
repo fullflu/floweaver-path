@@ -109,7 +109,7 @@ It would be useful to contribute to the original [floweaver](https://github.com/
 
 ## License
 
-[MIT](http://b4b4r07.mit-license.org)
+[MIT](https://github.com/fullflu/floweaver-path/blob/master/LICENSE)
 
 
 ## Structure
