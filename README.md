@@ -68,8 +68,8 @@ We focus on longitudinal data. The format of your file should be as follows:
 ```
 
 - index: This variable is handled as user id.
-- date: This variable is handled as the date and visualized in the x-axis. Data should not be duplicated with respect to a pair of (index, date).
-- value[n] (<img src="https://latex.codecogs.com/gif.latex?n&space;\in&space;\mathbb{N}">): These variables are handled as target variables. One of those variables is visualized in the y-axis.
+- date: This variable is handled as the date and visualized in the x-axis (in terms of sankey diagrams, `layer`). Data should not be duplicated with respect to a pair of (index, date).
+- value[n] (<img src="https://latex.codecogs.com/gif.latex?n&space;\in&space;\mathbb{N}">): These variables are handled as target variables. One of those variables is visualized in the y-axis (in terms of sankey diagrams, `node` in each layer).
 
 The name of each variable can be changed between files. You can select which variable to use interactively.
 
@@ -88,8 +88,8 @@ We prepare 7 dropdowns for users to interact with floweaver.
 - multiple display?: whether this library displays multiple images or not.
 - file path: data to be analyzed.
 - index column: column name that contains id information (e.g., user_id).
-- date column: column name that contains date information (visualized in the x-axis).
-- target varible: column name that you want to analyze (visualized in the y-axis).
+- date column: column name that contains date information (handled as a `layer` and visualized in the x-axis).
+- target varible: column name that you want to analyze (handled as a `node` in each layer and visualized in the y-axis).
 - target date: value name that you want to select as the value of your target date.
 - target value: value name that you want to select as the value of your target variable.
 
