@@ -117,11 +117,10 @@ It would be useful to contribute to the original [floweaver](https://github.com/
 <!-- tree -L 2 -->
 ```
 ├── Dockerfile
+├── LICENSE
 ├── README.md
 ├── demo
 │   └── floweaver_path_demo.gif
-├── docs
-├── etc
 ├── interaction
 │   ├── data
 │   └── template.ipynb
