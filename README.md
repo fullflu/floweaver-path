@@ -1,4 +1,4 @@
-# floweaver-docker
+# floweaver-path
 
 ## Description
 
@@ -26,7 +26,7 @@ The other is to create a notebook that can interact with users. We integrate sev
 ## Requirement
 
 - docker (installs two libraries: floweaver, ipysankeywidget)
-- input file
+- input file (`*.csv, *.pickle or *.xlsx` should be put in `interaction/data` directory)
 
 ## Setup
 
@@ -114,7 +114,6 @@ It would be useful to contribute to the original [floweaver](https://github.com/
 
 ## Structure
 
-<!-- tree -L 2 -->
 ```
 ├── Dockerfile
 ├── LICENSE
@@ -123,6 +122,7 @@ It would be useful to contribute to the original [floweaver](https://github.com/
 │   └── floweaver_path_demo.gif
 ├── interaction
 │   ├── data
+│   │   └── template_data.csv
 │   └── template.ipynb
 ├── requirements.txt
 ├── scripts
@@ -131,6 +131,13 @@ It would be useful to contribute to the original [floweaver](https://github.com/
 └── src
     ├── __init__.py
     ├── lib
+    │   ├── __init__.py
+    │   ├── floweaver_path.py
+    │   └── utils.py
     ├── main.py
     └── template
+        ├── data
+        │   └── template.csv
+        └── notebooks
+            └── template.ipynb
 ```
