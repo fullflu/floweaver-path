@@ -41,13 +41,14 @@ def get_palette(y_values, yl):
 def concat_in_out_df(df, i, col, val):
     n = df[i].unique().shape[0]
     df = df[[i, col, val]].copy()
+    id = df[i].unique()
     add_df = pd.DataFrame()
-    add_df[i] = np.arange(n)
+    add_df[i] = id
     add_df[col] = "Start"
     add_df[val] = 'in'
     df = pd.concat([df, add_df])
     add_df = pd.DataFrame()
-    add_df[i] = np.arange(n)
+    add_df[i] = id
     add_df[col] = "End"
     add_df[val] = 'out'
     df = pd.concat([df, add_df]).reset_index(drop=True)
