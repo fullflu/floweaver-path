@@ -2,7 +2,7 @@
 
 ## Description
 
-![Demo](demo/floweaver_path_demo.gif)
+![Demo](https://github.com/fullflu/floweaver-path/blob/master/demo/floweaver_path_demo.gif)
 
 This library (floweaver-path) is an extension of the [floweaver](https://sankeyview.readthedocs.io/en/latest/) to handle the visualization of paths that pass through a selected node.
 
@@ -25,10 +25,18 @@ The other is to create a notebook that can interact with users. We integrate sev
 
 ## Requirement
 
-- docker (installs two libraries: floweaver, ipysankeywidget)
-- input file (`*.csv, *.pickle or *.xlsx` should be put in `interaction/data` directory)
+### installation using docker
+- docker (installs two libraries: floweaver(==2.0.0a5), ipysankeywidget==0.2.5)
+- input file (`*.csv, *.pickle or *.xlsx` should be put in `interaction/data` directory if you do not specify the data directory)
 
-## Setup
+### installation using pip
+- pip
+- python (3.6)
+- input file (`*.csv, *.pickle or *.xlsx` should be put in `interaction/data` directory if you do not specify the data directory)
+
+Two libraries (floweaver>=2.0.0a5, ipysankeywidget>=0.2.5) will be installed.
+
+## Setup (when you install using docker)
 
 ### build
 
@@ -42,8 +50,6 @@ Run docker, and connect `interaction` to `work`.
 
 Data and notebooks are shared between a docker image and your local system.
 
-If you deleted the template notebook (`template.ipynb`) or the template data (`data/template_data.csv`) by mistake, you can restore it by shutting down the kernel and running notebooks again (`scripts/run-notebooks`).
-
 ### use notebooks in browser
 
 Open a new browser tab and type `localhost: 10001` in the URL.
@@ -52,12 +58,30 @@ Copy and paste a token to use notebooks. The token you can use is displayed in y
 
 `http://(<id> or 127.0.0.1):8888/?token=<token>`
 
+## Setup (when you install using pip)
+
+You can install floweaver_path by the ordinary installation command
+
+```
+pip install floweaver_path
+```
+
+You might need to execute the following commands
+
+```
+jupyter nbextension install --py widgetsnbextension --user
+jupyter nbextension install --py ipysankeywidget --user
+jupyter nbextension enable widgetsnbextension --user --py
+jupyter nbextension enable ipysankeywidget --user --py
+```
 
 ## Usage
 
-### prepare data in the data directory
+### prepare data
 
-You can use the jupyter notebook to upload your local file in the `data` directory. You can also directly put your local file in the data directory.
+If you install floweaver_path using docker, you need to put your local file under the `interaction` directory. You can use the jupyter notebook to upload your local file. You can also directly put your local file under the `interaction` directory.
+
+If you install floweaver_path using pip, you do not need to move your local file because you can specify the all local paths.
 
 We focus on longitudinal data. The format of your file should be as follows:
 ```
@@ -81,6 +105,22 @@ Please check the details of the data by loading `data/template_data.csv`.
 The template notebook (`template.ipynb`) should not be changed.
 I recommend you to duplicate the template notebook and work on the duplicated notebook.
 
+### call the visualizer
+
+You can import the visualizer and call it as follows.
+
+```
+from floweaver_path import visualizer
+visualizer()
+```
+
+The `visualizer` function has 5 arguments:
+- data_dir (default='./data'): where you put your local files
+- width (default=1070): the width of visualized figures
+- height (default=500): the width of visualized figures
+- target_color (default='yellowgreen'): the color of paths that pass through a selected node.
+- base_color (default='gray'): the width of paths that do not pass through a selected node.
+
 
 ### select a target node
 
@@ -96,7 +136,7 @@ We prepare 7 dropdowns for users to interact with floweaver.
 The dependence between the dropdowns is updated as soon as you select each value.
 
 
-## Author
+## Authors
 
 - [@fullflu](https://github.com/fullflu) proposed to create this library and prepared basic scripts.
 - [@adamist](https://github.com/adamist) created `Dockerfile`, `build` and `run-notebook` scripts.
@@ -128,16 +168,21 @@ It would be useful to contribute to the original [floweaver](https://github.com/
 ├── scripts
 │   ├── build
 │   └── run-notebook
-└── src
-    ├── __init__.py
-    ├── lib
-    │   ├── __init__.py
-    │   ├── floweaver_path.py
-    │   └── utils.py
-    ├── main.py
-    └── template
-        ├── data
-        │   └── template.csv
-        └── notebooks
-            └── template.ipynb
+├── setup.py
+├── src
+│   ├── floweaver_path
+│   │   ├── __init__.py
+│   │   ├── lib
+│   │   │   ├── __init__.py
+│   │   │   ├── ts_sankey.py
+│   │   │   └── utils.py
+│   │   └── visualizer.py
+│   └── template
+│       ├── data
+│       │   └── template.csv
+│       └── notebooks
+│           └── template.ipynb
+└── tests
+    ├── test_extract_files.py
+    └── test_load_file.py
 ```
