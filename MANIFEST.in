@@ -1,0 +1,4 @@
+include LICENSE
+include README.md
+recursive-include src/floweaver_path/lib *
+recursive-include docs *
