@@ -1,3 +1,11 @@
 data/
 interaction/
 *cache*
+.pypirc
+.python-version
+build/
+dist/
+eggs/
+.eggs/
+sdist/
+*.egg-info/

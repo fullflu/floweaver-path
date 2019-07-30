@@ -5,4 +5,4 @@ cd $BASE_DIR
 cp src/template/notebooks/template.ipynb interaction/template.ipynb
 cp src/template/data/template.csv interaction/data/template_data.csv
 
-docker run --rm -p 10001:8888 -v "$PWD"/interaction:/home/jovyan/work floweaver_docker/base
+docker run --rm -p 10001:8888 -v "$PWD"/interaction:/home/jovyan/work floweaver_path/base

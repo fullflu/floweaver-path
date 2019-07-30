@@ -7,7 +7,8 @@ from .utils import get_node_order_bundle, get_palette, load_file
 
 
 class TsSankey(object):
-    def __init__(self, multiple_display_widget, path_widget, index_widget, column_widget, value_widget, column_level_widget, value_level_widget):
+    def __init__(self, multiple_display_widget, path_widget, index_widget, column_widget, value_widget, column_level_widget, value_level_widget,
+                 width, height, target_color, base_color):
         self.df = None
         self.flows = None
         self.column_values = None
@@ -21,6 +22,10 @@ class TsSankey(object):
         self.sdd = None
         # display flag
         self.display_flag = False
+        self.width = width
+        self.height = height
+        self.target_color = target_color
+        self.base_color = base_color
 
     def on_path_update(self, change):
         # extract changed value
@@ -167,12 +172,12 @@ class TsSankey(object):
         )
         flow_partition = nodes[self.column_level_widget.value].partition
         y_list = np.sort(df_piv[self.column_level_widget.value].unique()).tolist()
-        palette = get_palette(y_list, self.value_level_widget.value)
+        palette = get_palette(y_list, self.value_level_widget.value, self.target_color, self.base_color)
         sdd = SankeyDefinition(nodes, bundles, orderings,
                                flow_partition=flow_partition)
         self.flows = tmp_flows
         self.palette = palette
-        self.size = dict(width=1070, height=500)
+        self.size = dict(width=self.width, height=self.height)
         if self.multiple_display_widget.value == "No" and self.display_flag is True:
             display(self.multiple_display_widget)
             display(self.path_widget)

@@ -6,11 +6,10 @@ import numpy as np
 from floweaver import ProcessGroup, Waypoint, Partition, Bundle
 
 
-data_dir = "data"
 base_extensions = ["csv", "xlsx", "pickle"]
 
 
-def extract_files(extensions=base_extensions):
+def extract_files(data_dir, extensions=base_extensions):
     file_candidate = os.listdir(data_dir)
     file_list = [os.path.join(data_dir, file_path) for file_path in file_candidate
                  if sum([extension == file_path.split(".")[-1] for extension in extensions])]
@@ -30,11 +29,9 @@ def load_file(file_path, extensions=base_extensions):
     return data
 
 
-def get_palette(y_values, yl):
-    nan_color = 'gray'
-    base_color = 'yellowgreen'
-    palette = {value: nan_color for value in y_values}
-    palette[yl] = base_color
+def get_palette(y_values, yl, target_color, base_color):
+    palette = {value: base_color for value in y_values}
+    palette[yl] = target_color
     return palette
 
 

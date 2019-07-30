@@ -1,14 +1,14 @@
 from ipywidgets import interact, Dropdown
 
-from lib.floweaver_path import TsSankey
-from lib.utils import extract_files
+from .lib.ts_sankey import TsSankey
+from .lib.utils import extract_files
 
 
-def main():
+def visualizer(data_dir='./data', width=1070, height=500, target_color='yellowgreen', base_color='gray'):
     # define widgets
     style = {'description_width': 'initial'}
     multiple_display_widget = Dropdown(options=["Yes", "No"], value=None, description="multiple display?", style=style)
-    path_widget = Dropdown(options=extract_files(), value=None, description="file path", style=style)
+    path_widget = Dropdown(options=extract_files(data_dir), value=None, description="file path", style=style)
     i_widget = Dropdown(options=[], value=None, description="index column", style=style)
     x_widget = Dropdown(options=[], value=None, description="date column", style=style)
     y_widget = Dropdown(options=[], value=None, description="target variable", style=style)
@@ -16,7 +16,8 @@ def main():
     y_level_widget = Dropdown(options=[], value=None, description="target value", style=style)
 
     # define an instance
-    ts = TsSankey(multiple_display_widget, path_widget, i_widget, x_widget, y_widget, x_level_widget, y_level_widget)
+    ts = TsSankey(multiple_display_widget, path_widget, i_widget, x_widget, y_widget, x_level_widget, y_level_widget,
+                  width, height, target_color, base_color)
 
     # update widgets
     multiple_display_widget.observe(ts.on_clear_output, names='value')

@@ -2,5 +2,5 @@
 BASE_DIR=$(cd $(dirname $0) && pwd)/../
 cd $BASE_DIR
 
-REPOSITORY_TAG="floweaver_docker/base:latest"
+REPOSITORY_TAG="floweaver_path/base:latest"
 docker build -t $REPOSITORY_TAG .
